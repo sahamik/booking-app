@@ -111,8 +111,7 @@ BookApp on tyylikäs, nopea ja käyttäjäystävällinen ajanvaraussovellus, jok
 
 ---
 
-## Lisenssi
-Tämä projekti on tarkoitettu opetuskäyttöön.
+
 
 ## Tekijä
 Mikael 
