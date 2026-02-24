@@ -11,27 +11,31 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4">
-      {/* Taustan koriste-elementit (tuovat eloa sivulle) */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+    <div className="min-h-screen relative flex items-center justify-center px-4 pt-32 pb-12 overflow-hidden bg-gray-50/50">
+      
+      {/* Taustan koriste-elementit */}
+      <div className="absolute top-1/4 -left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+      <div className="absolute bottom-1/4 -right-10 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
 
       <div className="relative max-w-md w-full">
-        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white p-10">
+        {/* Kortti */}
+        <div className="bg-white/80 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl shadow-blue-100/50 border border-white p-8 sm:p-10">
           
-          {/* Otsikko ja tervetulotoivotus */}
+          {/* Otsikko */}
           <div className="text-center mb-10">
             <h2 className="text-3xl font-black text-gray-900 tracking-tight">Tervetuloa</h2>
-            <p className="text-gray-500 mt-2 font-medium">Kirjaudu sisään hallinnoidaksesi varauksiasi.</p>
+            <p className="text-gray-600 mt-2 font-medium italic">Kirjaudu sisään hallinnoidaksesi varauksiasi.</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-bold text-gray-700 ml-1 mb-2">Sähköposti</label>
+              <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-600 ml-1 mb-2">
+                Sähköposti
+              </label>
               <input
                 type="email"
                 required
-                className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all duration-200 placeholder:text-gray-400"
+                className="w-full px-6 py-3 bg-white/50 border border-gray-400 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all duration-300 placeholder:text-gray-300 font-medium"
                 placeholder="matti@esimerkki.fi"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -40,13 +44,17 @@ const Login: React.FC = () => {
 
             <div>
               <div className="flex justify-between items-center ml-1 mb-2">
-                <label className="block text-sm font-bold text-gray-700">Salasana</label>
-                <a href="#" className="text-xs font-semibold text-blue-600 hover:text-blue-700">Unohtuiko salasana?</a>
+                <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-gray-600">
+                  Salasana
+                </label>
+                <a href="#" className="text-[10px] font-bold text-blue-600 hover:text-blue-700 uppercase tracking-wider">
+                  Unohtuiko salasana?
+                </a>
               </div>
               <input
                 type="password"
                 required
-                className="w-full px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all duration-200 placeholder:text-gray-400"
+                className="w-full px-6 py-3 bg-white/50 border border-gray-400 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:bg-white outline-none transition-all duration-300 placeholder:text-gray-300 font-medium"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -55,26 +63,26 @@ const Login: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-3 rounded-2xl font-bold text-md hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all active:scale-[0.98] transform"
+              className="w-full bg-blue-600 text-white py-3 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-blue-700 shadow-xl shadow-blue-200 transition-all active:scale-[0.98] mt-4"
             >
               Kirjaudu sisään
             </button>
           </form>
 
-          {/* Alalinkki */}
+          {/* Rekisteröitymislinkki */}
           <div className="mt-8 text-center">
-            <p className="text-gray-600 font-small">
+            <p className="text-gray-600 text-sm font-medium">
               Eikö sinulla ole tiliä?{' '}
-              <Link to="/register" className="text-blue-600 hover:text-blue-800 font-bold transition-colors">
+              <Link to="/register" className="text-blue-600 hover:underline font-black transition-all">
                 Luo uusi tili
               </Link>
             </p>
           </div>
         </div>
 
-        {/* Pieni lisäys: footer-teksti lomakkeen alla */}
-        <p className="text-center text-gray-400 text-xs mt-8">
-          Turvallinen kirjautuminen & SSL-suojattu yhteys
+        {/* Alatunniste */}
+        <p className="text-center text-gray-400 text-[10px] font-bold uppercase tracking-[0.2em] mt-8">
+          🛡️ Turvallinen SSL-suojattu yhteys
         </p>
       </div>
     </div>

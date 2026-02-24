@@ -19,7 +19,7 @@ const AdminDashboard: React.FC = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-6xl mx-auto px-4 pt-28 py-8">
       <header className="mb-10">
         <h1 className="text-4xl font-black text-gray-900">Hallintapaneeli</h1>
         <p className="text-gray-500 mt-2">Hallitse palveluita ja tarkastele tilastoja.</p>

@@ -58,6 +58,7 @@ const AddServiceForm: React.FC<{ onAdd: (service: Service) => void }> = ({ onAdd
             <option value={30}>30 min</option>
             <option value={60}>60 min</option>
             <option value={90}>90 min</option>
+            <option value={120}>120 min</option>
           </select>
         </div>
       </div>

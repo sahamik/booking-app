@@ -19,7 +19,6 @@ const App: React.FC = () => {
       <div className="min-h-screen bg-[#f8fafc] text-gray-900 font-sans">
         <Navbar />
 
-        {/* Poistettu ylimääräiset container-rajoitukset, jotta komponentit hallitsevat omaa asetteluaan */}
         <main>
           <Routes>
             {/* JULKISET REITIT */}
