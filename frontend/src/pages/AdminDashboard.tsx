@@ -6,69 +6,76 @@ type Service = {
   name: string;
   price: number;
   duration: number;
+  description: string;
 };
 
 const AdminDashboard: React.FC = () => {
   const [services, setServices] = useState<Service[]>([
-    { id: 1, name: 'Parturipalvelu', price: 25, duration: 30 },
-    { id: 2, name: 'Hieronnat', price: 50, duration: 60 },
+    { id: 1, name: 'Tietokoneen huolto', price: 79, duration: 60, description: 'Virusten poisto, päivitykset ja järjestelmän optimointi nopeammaksi.' },
+    { id: 2, name: 'Wi-Fi & Verkon optimointi', price: 89, duration: 90, description: 'Reitittimen asennus ja langattoman verkon katvealueiden korjaus.' },
+    { id: 3, name: 'Verkkosivujen teko', price: 450, duration: 120, description: 'Yksilölliset ja mobiiliystävälliset verkkosivut yrityskäyttöön.' },
+    { id: 4, name: 'Äly-TV & Viihde-elektroniikka', price: 69, duration: 45, description: 'Laitteiden kytkentä, kanavien haku ja suoratoistopalveluiden opastus.' },
+    { id: 5, name: 'Älykoti & Turvakamerat', price: 99, duration: 120, description: 'Älylukkojen, kameroiden ja valaistuksen asennus sekä mobiiliohjaus.' },
   ]);
 
   const handleAddService = (newService: Omit<Service, 'id'>) => {
     setServices([...services, { ...newService, id: Date.now() }]);
   };
 
+  const handleDeleteService = (id: number) => {
+    setServices(services.filter(s => s.id !== id));
+  };
+
   return (
-    <div className="max-w-6xl mx-auto px-4 pt-28 py-8">
-      <header className="mb-10">
-        <h1 className="text-4xl font-black text-gray-900">Hallintapaneeli</h1>
-        <p className="text-gray-500 mt-2">Hallitse palveluita ja tarkastele tilastoja.</p>
+    <div className="max-w-6xl mx-auto px-4 pt-28 pb-20">
+      <header className="mb-12">
+        <h1 className="text-4xl font-black text-surface-900 tracking-tight">Palveluhallinta</h1>
+        <p className="text-surface-500 mt-3 font-medium text-lg">Hallitse palveluita ja niiden kuvauksia.</p>
       </header>
 
-      {/* Tilastokortit */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        {[
-          { label: 'Varauksia tänään', value: '24', color: 'text-blue-600', bg: 'bg-blue-50' },
-          { label: 'Liikevaihto (kk)', value: '3 450 €', color: 'text-green-600', bg: 'bg-green-50' },
-          { label: 'Aktiiviset palvelut', value: services.length.toString(), color: 'text-purple-600', bg: 'bg-purple-50' },
-        ].map((stat, i) => (
-          <div key={i} className={`${stat.bg} p-6 rounded-3xl border border-white shadow-sm`}>
-            <p className="text-sm font-bold uppercase tracking-wider text-gray-500">{stat.label}</p>
-            <p className={`text-3xl font-black mt-1 ${stat.color}`}>{stat.value}</p>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        {/* VASEN: LOMAKE */}
+        <div className="lg:col-span-4">
+          <div className="sticky top-32">
+            <h2 className="text-xl font-black text-surface-900 mb-6 px-1">Lisää uusi palvelu</h2>
+            <AddServiceForm onAdd={handleAddService} />
           </div>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        {/* Vasen sarake: Lomake */}
-        <div className="lg:col-span-1">
-          <AddServiceForm onAdd={handleAddService} />
         </div>
 
-        {/* Oikea sarake: Palvelulistaus */}
-        <div className="lg:col-span-2">
-          <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-            <div className="p-6 border-b border-gray-50">
-              <h3 className="text-xl font-bold text-gray-800">Nykyiset palvelut</h3>
+        {/* OIKEA: LISTAUS */}
+        <div className="lg:col-span-8">
+          <div className="bg-white rounded-admin shadow-soft border border-surface-100 overflow-hidden">
+            <div className="p-8 border-b border-surface-50">
+              <h3 className="text-xl font-black text-surface-900">Palveluvalikoima</h3>
             </div>
+            
             <div className="overflow-x-auto">
               <table className="w-full text-left">
-                <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
+                <thead className="bg-surface-50/50 text-[10px] font-black uppercase tracking-superwide text-surface-500">
                   <tr>
-                    <th className="px-6 py-4">Palvelu</th>
-                    <th className="px-6 py-4">Kesto</th>
-                    <th className="px-6 py-4">Hinta</th>
-                    <th className="px-6 py-4"></th>
+                    <th className="px-8 py-5">Palvelun tiedot</th>
+                    <th className="px-8 py-5">Hinta & Kesto</th>
+                    <th className="px-8 py-5 text-right">Hallinta</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-50">
+                <tbody className="divide-y divide-surface-50">
                   {services.map((s) => (
-                    <tr key={s.id} className="hover:bg-gray-50 transition">
-                      <td className="px-6 py-4 font-bold text-gray-800">{s.name}</td>
-                      <td className="px-6 py-4 text-gray-600">{s.duration} min</td>
-                      <td className="px-6 py-4 font-semibold text-blue-600">{s.price} €</td>
-                      <td className="px-6 py-4 text-right">
-                        <button className="text-red-400 hover:text-red-600 font-medium text-sm transition">
+                    <tr key={s.id} className="group hover:bg-surface-50/30 transition-colors">
+                      <td className="px-8 py-6">
+                        <p className="font-bold text-surface-800">{s.name}</p>
+                        <p className="text-xs text-surface-500 mt-1 max-w-md leading-relaxed">{s.description}</p>
+                      </td>
+                      <td className="px-8 py-6">
+                        <div className="flex flex-col gap-1">
+                          <span className="font-black text-brand text-sm">{s.price} €</span>
+                          <span className="text-[10px] font-bold text-surface-400 uppercase tracking-wider">{s.duration} min</span>
+                        </div>
+                      </td>
+                      <td className="px-8 py-6 text-right">
+                        <button 
+                          onClick={() => handleDeleteService(s.id)}
+                          className="text-[10px] font-black uppercase tracking-superwide bg-danger-light text-danger hover:bg-danger hover:text-white transition-all px-3 py-1.5 rounded-xl"
+                        >
                           Poista
                         </button>
                       </td>

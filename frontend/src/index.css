@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+@theme {
+  /* BRÄNDIVÄRIT */
+  --color-brand-light: #eff6ff;   /* bg-blue-50 */
+  --color-brand: #2563eb;         /* blue-600 */
+  --color-brand-dark: #1e40af;    /* blue-800 */
+
+  /* PINNAT JA TEKSTIT (Neutraalit) */
+  --color-surface-50: #f9fafb;    /* bg-gray-50 */
+  --color-surface-100: #f3f4f6;   /* bg-gray-100 */
+  --color-surface-400: #9ca3af;   /* text-gray-400 */
+  --color-surface-500: #6b7280;   /* text-gray-500 */
+  --color-surface-800: #1f2937;   /* text-gray-800 */
+  --color-surface-900: #111827;   /* text-gray-900 */
+
+  /* VIRHEVÄRIT */
+  --color-danger-light: #fef2f2;  /* bg-red-50 */
+  --color-danger: #ef4444;        /* red-500 */
+
+  /* PYÖRISTYKSET */
+  --radius-admin: 2.5rem;         /* Se suuri rounded-[3rem] tyyli */
+  --radius-xl: 1rem;              /* Perusnappien pyöristys */
+
+  /* VARJOT */
+  --shadow-soft: 0 8px 30px rgb(0, 0, 0, 0.04);
+  --shadow-brand: 0 10px 15px -3px rgba(37, 99, 235, 0.1);
+
+  /* KIRJASINVÄLI */
+  --letter-spacing-superwide: 0.2em; /* tracking-widest */
+}
+
+/* Voit myös määrittää perusasetukset koko sivustolle tässä */
+@layer base {
+  body {
+    @apply bg-surface-50 text-surface-900 antialiased;
+    font-family: 'Inter', sans-serif; /* Jos olet ladannut Inter-fontin */
+  }
+}

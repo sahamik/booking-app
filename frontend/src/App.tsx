@@ -7,12 +7,16 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import UserDashboard from './pages/UserDashboard';
 import UserBookings from './pages/UserBookings';
+import AdminBookings from './pages/AdminBookings';
 import AdminDashboard from './pages/AdminDashboard';
+import Settings from './pages/Settings';
+import NewBooking from './pages/NewBooking';
+import AdminUsers from './pages/AdminUsers';
 
 const App: React.FC = () => {
   // Simuloidaan kirjautumistilaa
   const [isLoggedIn] = useState(true); 
-  const [userRole] = useState<'user' | 'admin'>('user');
+  const [userRole] = useState<'user' | 'admin'>('admin');
 
   return (
     <Router>
@@ -34,12 +38,19 @@ const App: React.FC = () => {
               path="/bookings" 
               element={isLoggedIn ? <UserBookings /> : <Navigate to="/login" />} 
             />
+            <Route 
+              path="/new-booking" 
+              element={isLoggedIn ? <NewBooking /> : <Navigate to="/login" />} 
+            />
+            <Route path="/settings" element={isLoggedIn ? <Settings /> : <Navigate to="/login" />} />
             
             {/* ADMIN REITIT */}
             <Route 
               path="/admin" 
               element={isLoggedIn && userRole === 'admin' ? <AdminDashboard /> : <Navigate to="/login" />} 
             />
+            <Route path="/admin/bookings" element={isLoggedIn && userRole === 'admin' ? <AdminBookings /> : <Navigate to="/login" />} />
+            <Route path="/admin/users" element={isLoggedIn && userRole === 'admin' ? <AdminUsers /> : <Navigate to="/login" />} />
 
             {/* OLETUSREITTI (Etusivu) */}
             <Route 

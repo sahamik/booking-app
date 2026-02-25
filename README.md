@@ -1,6 +1,6 @@
-# 📅 BookApp – Moderni Varausjärjestelmä
+# 📅 ITKamu – Moderni Varausjärjestelmä
 
-BookApp on tyylikäs, nopea ja käyttäjäystävällinen ajanvaraussovellus, joka on rakennettu modernilla React + TypeScript -pinolla. Sovelluksessa on panostettu erityisesti visuaalisuuteen ja saumattomaan käyttäjäkokemukseen.
+ITKamu on tyylikäs, nopea ja käyttäjäystävällinen ajanvaraussovellus, joka on rakennettu modernilla React + TypeScript -pinolla. Sovelluksessa on panostettu erityisesti visuaalisuuteen ja saumattomaan käyttäjäkokemukseen.
 
 ---
 
@@ -14,7 +14,7 @@ BookApp on tyylikäs, nopea ja käyttäjäystävällinen ajanvaraussovellus, jok
 
 ### Hallinta (Admin)
 - Admin dashboard: Näkymä yrityksen palveluihin ja varauksiin
-- Palveluiden hallinta: Mahdollisuus lisätä uusia palveluita suoraan paneelista
+- Palveluiden hallinta: Mahdollisuus lisätä uusia palveluita suoraan paneelista tai poistaa palveluita
 
 ---
 
@@ -28,10 +28,14 @@ BookApp on tyylikäs, nopea ja käyttäjäystävällinen ajanvaraussovellus, jok
 - Heroicons / Lucide
 - date-fns
 
-### Backend (TULOSSA)
+### Backend (Suunnitteilla / Kehityksessä)
+
+- Sovelluksen palvelinpuoli toteutetaan myöhemmin tukemaan reaaliaikaista varaustenhallintaa ja turvallista kirjautumista.
+
 - Node.js (Express, TypeScript)
-- JWT WebToken
-- MongoDB
+- WT (JSON Web Token) ja bcrypt salasanojen kryptaukseen.
+- MongoDB (Mongoose) varaustietojen ja käyttäjäprofiilien tallennukseen.
+- Tällä hetkellä frontend käyttää simuloitua dataa (mock data) ja paikallista tilaa (useState), jotta käyttöliittymän kehitys on sujuvaa
 
 ---
 
@@ -87,7 +91,8 @@ BookApp on tyylikäs, nopea ja käyttäjäystävällinen ajanvaraussovellus, jok
    ```
 5. Avaa selaimessa osoite, jonka terminaali näyttää (yleensä http://localhost:5173)
 
-### Backend (TULOSSA MYÖHEMMIN)
+### Backend (Suunnitteilla / Kehityksessä)
+
 1. Siirry backend-kansioon:
    ```bash
    cd backend

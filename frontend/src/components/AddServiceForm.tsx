@@ -1,73 +1,92 @@
 import React, { useState } from 'react';
 
-interface Service {
-  name: string;
-  price: number;
-  duration: number;
-  description: string;
+interface AddServiceFormProps {
+  onAdd: (service: { name: string; price: number; duration: number; description: string }) => void;
 }
 
-const AddServiceForm: React.FC<{ onAdd: (service: Service) => void }> = ({ onAdd }) => {
-  const [formData, setFormData] = useState<Service>({
-    name: '',
-    price: 0,
-    duration: 30,
-    description: ''
-  });
+const AddServiceForm: React.FC<AddServiceFormProps> = ({ onAdd }) => {
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [duration, setDuration] = useState('');
+  const [description, setDescription] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onAdd(formData);
-    setFormData({ name: '', price: 0, duration: 30, description: '' }); // Tyhjennä lomake
+    if (!name || !price || !duration || !description) return;
+    
+    onAdd({
+      name,
+      price: Number(price),
+      duration: Number(duration),
+      description
+    });
+
+    setName('');
+    setPrice('');
+    setDuration('');
+    setDescription('');
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
-      <h3 className="text-lg font-bold text-gray-800 mb-2">Lisää uusi palvelu</h3>
-      
+    <form 
+      onSubmit={handleSubmit} 
+      className="bg-white p-8 rounded-admin shadow-soft border border-surface-100 space-y-6"
+    >
       <div>
-        <label className="block text-sm font-semibold text-gray-600">Palvelun nimi</label>
+        <label className="block text-[10px] font-black uppercase tracking-superwide text-surface-400 mb-2 ml-1">
+          Palvelun nimi
+        </label>
         <input
           type="text"
-          required
-          className="w-full mt-1 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition"
-          value={formData.name}
-          onChange={(e) => setFormData({...formData, name: e.target.value})}
-          placeholder="esim. Hiustenleikkuu"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Esim. Tietokoneen syväpuhdistus"
+          className="w-full px-5 py-3 bg-surface-50 border border-surface-200 rounded-2xl focus:ring-2 focus:ring-brand focus:border-transparent outline-none transition-all font-medium placeholder:text-surface-300"
+        />
+      </div>
+
+      <div>
+        <label className="block text-[10px] font-black uppercase tracking-superwide text-surface-400 mb-2 ml-1">
+          Kuvaus
+        </label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Mitä palveluun kuuluu..."
+          className="w-full px-5 py-3 bg-surface-50 border border-surface-200 rounded-2xl focus:ring-2 focus:ring-brand focus:border-transparent outline-none transition-all min-h-32 font-medium placeholder:text-surface-300 resize-none"
         />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-semibold text-gray-600">Hinta (€)</label>
+          <label className="block text-[10px] font-black uppercase tracking-superwide text-surface-400 mb-2 ml-1">
+            Hinta (€)
+          </label>
           <input
             type="number"
-            required
-            className="w-full mt-1 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition"
-            value={formData.price}
-            onChange={(e) => setFormData({...formData, price: Number(e.target.value)})}
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            className="w-full px-5 py-3 bg-surface-50 border border-surface-200 rounded-2xl focus:ring-2 focus:ring-brand focus:border-transparent outline-none transition-all font-bold text-surface-900"
           />
         </div>
         <div>
-          <label className="block text-sm font-semibold text-gray-600">Kesto (min)</label>
-          <select
-            className="w-full mt-1 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition"
-            value={formData.duration}
-            onChange={(e) => setFormData({...formData, duration: Number(e.target.value)})}
-          >
-            <option value={30}>30 min</option>
-            <option value={60}>60 min</option>
-            <option value={90}>90 min</option>
-            <option value={120}>120 min</option>
-          </select>
+          <label className="block text-[10px] font-black uppercase tracking-superwide text-surface-400 mb-2 ml-1">
+            Kesto (min)
+          </label>
+          <input
+            type="number"
+            value={duration}
+            onChange={(e) => setDuration(e.target.value)}
+            className="w-full px-5 py-3 bg-surface-50 border border-surface-200 rounded-2xl focus:ring-2 focus:ring-brand focus:border-transparent outline-none transition-all font-bold text-surface-900"
+          />
         </div>
       </div>
 
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100"
+        className="w-full py-4 bg-brand text-white rounded-2xl font-black text-xs uppercase tracking-superwide hover:bg-brand-dark transition-all shadow-brand active:scale-[0.98]"
       >
-        Tallenna palvelu
+        Lisää uusi palvelu
       </button>
     </form>
   );
