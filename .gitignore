@@ -1,0 +1,4 @@
+3. Admin-kirjautuminen:
+
+- `http://localhost:5173/?admin=1`
+- Oletussalasana: `admin123` (muuta heti)

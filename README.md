@@ -29,12 +29,7 @@ npm run dev
 
 - `http://localhost:5173`
 
-3. Admin-kirjautuminen:
-
-- `http://localhost:5173/?admin=1`
-- Oletussalasana: `admin123` (muuta heti)
-
-4. Varaussivu asiakkaalle:
+3. Varaussivu asiakkaalle:
 
 - `http://localhost:5173/?book=1`
 
