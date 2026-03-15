@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   const apiKey = process.env.RESEND_API_KEY
 
   if (!apiKey) {
-    // Ei sähköpostiavainta — ei ole pakollinen, skippaataan
+    // Ei sähköpostiavainta — ei ole pakollinen, skipataan
     return res.status(200).json({ sent: false, reason: 'No email key configured' })
   }
 
@@ -46,7 +46,7 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: `${businessName} <noreply@varaa.fi>`,
+        from: `${businessName} <noreply@aikaxi.fi>`,
         to: [to],
         subject: `✓ Varaus vahvistettu — ${date} klo ${time}`,
         html,
