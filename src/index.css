@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #fdfbf7;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,h4,h5,h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  /* Teemavärien oletusarvot (sage) */
+  :root {
+    --color-primary: #3d6340;
+    --color-primary-light: #f4f7f4;
+    --color-primary-medium: #a5c1a5;
+    --color-primary-dark: #1e3320;
+    --theme-50: #f4f7f4;
+    --theme-100: rgba(61,99,64,0.12);
+    --theme-200: rgba(61,99,64,0.25);
+    --theme-400: rgba(61,99,64,0.55);
+    --theme-500: #3d6340;
+    --theme-600: #3d6340;
+    --theme-700: #2a4a2c;
+    --theme-800: #1e3320;
+    --theme-900: #1e3320;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 font-semibold rounded-xl
+           active:scale-[0.98] transition-all duration-150 shadow-sm text-white
+           focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background-color: var(--color-primary);
+    focus-ring-color: var(--color-primary-medium);
+  }
+  .btn-primary:hover {
+    filter: brightness(0.9);
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 bg-white font-semibold rounded-xl
+           border active:scale-[0.98] transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-offset-2;
+    color: var(--color-primary);
+    border-color: var(--color-primary-medium);
+  }
+  .btn-secondary:hover {
+    background-color: var(--theme-50);
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-3 py-2 font-medium rounded-lg transition-all duration-150;
+    color: var(--color-primary);
+  }
+  .btn-ghost:hover {
+    background-color: var(--theme-50);
+  }
+  .card {
+    @apply bg-white rounded-2xl border shadow-sm;
+    border-color: var(--theme-100);
+  }
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border bg-white
+           placeholder:text-gray-400 focus:outline-none
+           transition-all duration-150 text-sm;
+    border-color: var(--color-primary-medium);
+    color: #1a1a1a;
+  }
+  .input-field:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 2px var(--color-primary);
+  }
+  .section-label {
+    @apply text-xs font-bold tracking-widest uppercase mb-2;
+    color: var(--color-primary);
+    opacity: 0.7;
+  }
+  .day-available {
+    @apply w-10 h-10 rounded-xl flex flex-col items-center justify-center text-sm font-medium
+           cursor-pointer transition-all duration-150;
+    color: var(--color-primary-dark);
+  }
+  .day-available:hover {
+    background-color: var(--theme-100);
+  }
+  .day-selected {
+    color: white !important;
+    background-color: var(--color-primary) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .day-disabled {
+    @apply opacity-30 cursor-not-allowed;
+    color: #999;
+  }
+  .day-today {
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 3px white;
+  }
+  .time-slot {
+    @apply px-4 py-2.5 rounded-xl border text-sm font-medium
+           cursor-pointer transition-all duration-150;
+    border-color: var(--color-primary-medium);
+    color: var(--color-primary-dark);
+  }
+  .time-slot:hover {
+    background-color: var(--theme-50);
+    border-color: var(--color-primary);
+  }
+  .time-slot-selected {
+    color: white !important;
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+  }
+  .time-slot-taken {
+    @apply opacity-40 cursor-not-allowed line-through;
+  }
+
+  /* Teema-apuluokat */
+  .theme-bg { background-color: var(--color-primary); }
+  .theme-bg-light { background-color: var(--theme-50); }
+  .theme-text { color: var(--color-primary); }
+  .theme-border { border-color: var(--color-primary-medium); }
+  .theme-ring { box-shadow: 0 0 0 2px var(--color-primary); }
+}
+
+@layer utilities {
+  .animate-fade-up { animation: fadeUp 0.5s ease forwards; }
+  .animate-fade-in { animation: fadeIn 0.3s ease forwards; }
+  .animate-scale-in { animation: scaleIn 0.25s ease forwards; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f8f8f8; }
+::-webkit-scrollbar-thumb { background: var(--color-primary-medium); border-radius: 3px; }
